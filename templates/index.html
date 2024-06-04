@@ -1,0 +1,168 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<DOCTYPE html>
+<html lang="en">
+<body>
+    {% block content %}
+      <section id="hero" class="d-flex justify-content-center align-items-center">
+        <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+          <h2>Eng so'ngi ilmiy innovatsion yangiliklar
+          </h2><br>
+          <h1 style="color: yellow;">Toshkent axborot texnologiyalari universiteti <br>Farg‘ona filiali axborot xizmati platformasi</h1>
+        
+          <a href="{% url 'contact' %}" class="btn-get-started">Bog'lanish</a>
+        </div>
+      </section>  
+      <main id="main">
+        <section id="about" class="about">
+          <div class="container" data-aos="fade-up">
+
+            <div class="row">
+              <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                <img src="{% static 'assets/img/imkoniyat.png' %}" class="img-fluid" alt="">
+              </div>
+              <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                <h3>Samaradorlik uchun umumiy imkoniyatlar</h3>
+                <p class="fst-italic">
+                  Ushbu portal orqali imkoniyatlar bilan tanishishingiz mumkin.
+                </p>
+                <ul>
+                  {% for chance in oportunities %}
+                  <li><i class="bi bi-check-circle"></i> <a href="{% url 'oportunities' %}">{{chance.name}}</a></li>
+                  {% endfor %}
+                  {% comment %} <li><i class="bi bi-check-circle"></i>Mirzo Ulug'bek vorislari respublika tanloviga qatnashish </li>
+                  <li><i class="bi bi-check-circle"></i> Yoshlar daftariga kiruvchi talabalar uchun </li>
+                  <li><i class="bi bi-check-circle"></i> Talabalarga ijara shartnomalarini to'lab berish shartlari</li> {% endcomment %}
+                </ul>
+                <p>
+                Barcha imkoniyatlardan foydalanish uchun, qonuniy nizom bo'yicha shartlar bajarilishi kerak!
+                </p>
+
+              </div>
+            </div>
+
+          </div>
+        </section>
+        <section id="counts" class="counts section-bg">
+          <div class="container">
+            <div class="row counters">
+              <div class="col-lg-3 col-6 text-center">
+                <span data-purecounter-start="0" data-purecounter-end="121" data-purecounter-duration="1" class="purecounter"></span>
+                <p>O'qituvchilar</p>
+              </div>
+              <div class="col-lg-3 col-6 text-center">
+                <span data-purecounter-start="0" data-purecounter-end="4500" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Talabalar</p>
+              </div>
+              <div class="col-lg-3 col-6 text-center">
+                <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Yo'nalish</p>
+              </div>
+              <div class="col-lg-3 col-6 text-center">
+                <span data-purecounter-start="0" data-purecounter-end="30" data-purecounter-duration="1" class="purecounter"></span>
+                <p>To'garaklar</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="events" class="events">
+          <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Yangiliklar</h2>
+                <p>Eng so'ngi yangiliklar</p>
+              </div>
+            <div class="row">
+              {% for data in newss %}
+                <div class="col-md-6 d-flex align-items-stretch">
+                  <div class="card">
+                    <div class="card-img">
+                      <img src="{{ data.image.url }}" alt="...">
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="{% url 'detail_news' pk=data.id %}">{{ data.name }}</a></h5>
+                      <p class="fst-italic text-center"></p>
+                      <p class="card-text">
+                        {{ data.shortly_description }}
+                      </p>
+                      
+                      {% comment %} <small><b>Views: </b>{{ data.get_number_of_views }}</small> {% endcomment %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+              {% comment %} <div class="col-md-6 d-flex align-items-stretch">
+                <div class="card">
+                  <div class="card-img">
+                    <img src="920__95_2401657905.jpg" alt="...">
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="">Stol tennisi musobaqasi</a></h5>
+                    <p class="fst-italic text-center">Muhammad al-Xorazmiy nomidagi TATU Farg'ona filialida professor o'qituvchilar va xodimlar o'rtasida musobaqa bo'lib o'tdi</p>
+                    <p class="card-text">Musobaqada ishtirok etish uchun sport klubiga 38 nafar ishtirokchilardan talabnomalar kelib tushgan. Bulardan 28 nafarini erkaklar hamda 10 nafarini ayollar tashkil etdi.</p>
+                  </div>
+                </div>
+  
+               {% endcomment %}
+            </div>
+  
+          </div>
+        </section>
+        <section id="popular-courses" class="courses">
+          <div class="container" data-aos="fade-up">
+              <div class="section-title">
+                <h2>Media</h2>
+                <p>Media Bo'limi a'zolari</p>
+              </div>
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+              {% for members in media_members %}
+                <section id="courses" class="courses">
+                  <div class="container" data-aos="fade-up">
+
+                    <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                      {% for member in members %}
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                          <div class="course-item">
+                            <img style="height: 500px;width: 800px" src="{{ member.image.url }}" class="img-fluid" alt="...">
+                            <div class="course-content">
+                              <a href="{% url 'media_member_detail' pk=member.id %}"><div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4>Batafsil Ko'rish</h4>
+                                <!-- <p class="price"> Oyiga  $16</p>-->
+                              </div></a>
+
+                              <h3><a href="#">Vazifasi: {{ member.status }}</a></h3>
+                              <p>{{ member.shortly_description }}</p>
+                              <div class="trainer d-flex justify-content-between align-items-center">
+                                <div class="trainer-profile d-flex align-items-center">
+                                  {% comment %} <img  src="{% static 'images/dasturch2.jpg' %}" class="img-fluid" alt=""> {% endcomment %}
+                                  <span style="float: end !important;">{{ member.first_name }} {{ member.last_name }}</span>
+                                </div>
+                              <!-- <div class="trainer-rank d-flex align-items-center">
+                                  <i class="bx bx-user"></i>&nbsp;54
+                                  &nbsp;&nbsp;
+                                  <i class="bx bx-heart"></i>&nbsp;65
+                                </div>-->
+                              </div>
+                            </div>
+                          </div>
+                        </div> <!-- End Course Item-->
+                      {% endfor %}  
+
+                    </div>
+                  </div>
+                </section><!-- End Courses Section -->
+              {% endfor %}
+
+
+            </div>
+
+          </div>
+        </section><!-- End Popular Courses Section -->
+
+    
+
+      </main><!-- End #main -->
+    {% endblock content %}
+  
+</body>
+
+</html>

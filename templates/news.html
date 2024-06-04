@@ -1,0 +1,64 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+  {% block content %}
+    <main id="main">
+
+      <!-- ======= Breadcrumbs ======= -->
+      <div class="breadcrumbs" data-aos="fade-in">
+        <div class="container">
+          <h2>Yangiliklar</h2>
+          <p style="font-size: 18px">Oliy ta’lim muassasalarida olib borilayotgan ma’naviy-ma’rifiy targ’ibot loyihalar va yangiliklar </p>
+        </div>
+      </div><!-- End Breadcrumbs -->
+
+      <!-- ======= Events Section ======= -->
+      <section id="events" class="events">
+        <div class="container" data-aos="fade-up">
+
+          <div class="row">
+            {% for data in news %}
+              <div class="col-md-6 d-flex align-items-stretch">
+                <div class="card">
+                  <div class="card-img">
+                    <img src="{{ data.image.url }}" alt="...">
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'detail_news' pk=data.id %}">{{ data.name }}</a></h5>
+                    <p class="fst-italic text-center"></p>
+                    <p class="card-text">
+                      {{ data.shortly_description }}
+                    </p>
+                    <small><b>Uploaded at: </b>{{ data.created_at }}</small><br>
+                    <small><b>Uploaded by: </b>{{ data.uploaded_by }}</small><br>
+                    {% comment %} <small><b>Views: </b>{{ data.get_number_of_views }}</small> {% endcomment %}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            {% comment %} <div class="col-md-6 d-flex align-items-stretch">
+              <div class="card">
+                <div class="card-img">
+                  <img src="920__95_2401657905.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><a href="">Stol tennisi musobaqasi</a></h5>
+                  <p class="fst-italic text-center">Muhammad al-Xorazmiy nomidagi TATU Farg'ona filialida professor o'qituvchilar va xodimlar o'rtasida musobaqa bo'lib o'tdi</p>
+                  <p class="card-text">Musobaqada ishtirok etish uchun sport klubiga 38 nafar ishtirokchilardan talabnomalar kelib tushgan. Bulardan 28 nafarini erkaklar hamda 10 nafarini ayollar tashkil etdi.</p>
+                </div>
+              </div>
+
+             {% endcomment %}
+          </div>
+
+        </div>
+      </section><!-- End Events Section -->
+
+    </main><!-- End #main -->
+  {% endblock content %}
+</body>
+
+</html>

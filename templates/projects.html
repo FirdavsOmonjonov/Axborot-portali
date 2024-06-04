@@ -1,0 +1,59 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+  {% block content %}
+    <main id="main" data-aos="fade-in">
+
+      <!-- ======= Breadcrumbs ======= -->
+      <div class="breadcrumbs">
+        <div class="container">
+          <h2>Loyihalar</h2>
+          <p style="font-size: 18px">Oliy ta'lim muassasalarida ta'lim olayotgan talabalar ishtirok etishi mumkin bo'lgan barcha loyihalar va tanlovlar  </p>
+        </div>
+      </div><!-- End Breadcrumbs --> 
+
+      <!-- ======= Courses Section ======= -->
+      {% for initial_list in projects %}
+        <section id="courses" class="courses">
+          <div class="container" data-aos="fade-up">
+
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+              {% for project in initial_list %}
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                  <div class="course-item">
+                    <img style="height: 237px;width: 800px" src="{{ project.image.url }}" class="img-fluid" alt="...">
+                    <div class="course-content">
+                      <a href="{% url 'project_detail' pk=project.id %}">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                          <h4>Batafsil ko'rish</h4>
+                          <!-- <p class="price"> Oyiga  $16</p>-->
+                        </div>
+                      </a>
+                      <h3><a href="#">{{ project.name }}</a></h3>
+                      <p>{{ project.shortly_description }}</p>
+                      <small><b> Masul shaxs:</b> {{project.responsible_person}}</small>
+                      <br><small><b>uploaded at:</b> {{project.created_at}}</small>
+                      {% comment %} <br><small><b>Views:</b> {{project.get_number_of_views}}</small> {% endcomment %}
+                    </div>
+                  </div>
+                </div> <!-- End Course Item-->
+              {% endfor %}
+              
+
+            </div>
+          </div>
+        </section><!-- End Courses Section -->
+      {% endfor %}
+
+
+
+
+    </main><!-- End #main -->
+  {% endblock content %}
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+  {% block content %}
+    <main id="main" data-aos="fade-in">
+
+      <!-- ======= Breadcrumbs ======= -->
+      <div class="breadcrumbs">
+        <div class="container">
+          <h2>Iqtidorli Talabalar</h2>
+          <p style="font-size: 18px">Oliy ta’lim muassasalarida tengdoshlari orasida o’zining intiluvchanligi, shijoatkorligi va ko’plab yutuqlarga erishgan iqtidorli talabalar </p>
+        </div>
+      </div><!-- End Breadcrumbs -->
+
+      <!-- ======= Courses Section ======= -->
+      {% for students in students_list %}
+        <section id="courses" class="courses">
+          <div class="container" data-aos="fade-up">
+
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+              {% for student in students %}
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                  <div class="course-item">
+                    <img style="height: 500px;width: 800px" src="{{ student.image.url }}" class="img-fluid" alt="...">
+                    <div class="course-content">
+                      <a href="{% url 'student_detail' pk=student.id %}"><div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4>Batafsil Ko'rish</h4>
+                        <!-- <p class="price"> Oyiga  $16</p>-->
+                      </div></a>
+
+                      <h3><a href="#">Guruh: {{ student.group }}</a></h3>
+                      <p>{{ student.shortly_description }}</p>
+                      <div class="trainer d-flex justify-content-between align-items-center">
+                        <div class="trainer-profile d-flex align-items-center">
+                          {% comment %} <img  src="{% static 'images/dasturch2.jpg' %}" class="img-fluid" alt=""> {% endcomment %}
+                          <span style="float: end !important;">{{ student.first_name }} {{ student.last_name }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> <!-- End Course Item-->
+              {% endfor %}  
+
+            </div>
+          </div>
+        </section><!-- End Courses Section -->
+      {% endfor %}
+
+
+
+
+
+    </main><!-- End #main -->
+  {% endblock content %}
+</body>
+
+</html>
